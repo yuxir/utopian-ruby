@@ -1,12 +1,7 @@
-require 'utopian_ruby'
+require 'spec_helper'
 
-describe UtopianRubyTest do
-
-  describe "get moderators" do
-    context "given url" do
-      expect(UtopianRuby.get_moderators().length>0)
-    end
+describe UtopianRuby::UtopianRubyAPI do
+  it "has moderators" do
+    expect(UtopianRuby::UtopianRubyAPI.get_moderators()["results"].length).to be > 0
   end
-
-
 end
