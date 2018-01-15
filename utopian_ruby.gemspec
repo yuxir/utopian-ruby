@@ -1,3 +1,7 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'utopian_ruby/version'
+
 Gem::Specification.new do |s|
   s.name        = 'utopian_ruby'
   s.version     = UtopianRuby::VERSION
@@ -10,6 +14,6 @@ Gem::Specification.new do |s|
     'http://rubygems.org/gems/utopian_ruby'
   s.license       = 'MIT'
 
-  spec.add_dependency 'faraday'
-  spec.add_development_dependency 'rspec'
+  s.add_dependency 'faraday'
+  s.add_development_dependency 'rspec'
 end
