@@ -13,10 +13,42 @@ module UtopianRuby
       end
     end
 
+    def self.get_request(endpoint)
+      get_connection().get endpoint
+    end
+
     def self.get_moderators()
-      path = '/api/moderators'
-      response = get_connection().get path
-      moderators = JSON.parse(response.body)
+      JSON.parse(get_request('/api/moderators').body)
+    end
+
+    def self.is_moderator(user)
+      get_moderators()["results"].each do |moderator|
+        if moderator['account']==user
+          return true
+        end
+      end
+      false
+    end
+
+    def self.get_sponsors()
+      JSON.parse(get_request('/api/sponsors').body)
+    end
+
+    def self.is_sponsor(user)
+      get_sponsors()["results"].each do |sponsor|
+        if sponsor['account']==user
+          return true
+        end
+      end
+      false
+    end
+
+    def self.stats()
+      JSON.parse(get_request('/api/stats').body)
+    end
+
+    def self.is_voting()
+      self.stats()["stats"]["bot_is_voting"]
     end
   end
 end
