@@ -96,5 +96,13 @@ module UtopianRuby
     def self.get_post(author,permlink)
       JSON.parse(get_request('/api/posts/'+author+'/'+permlink).body)
     end
+
+    # return total number of Utopian posts that satisfy params
+    def self.post_count(params)
+      if params.nil?
+         params = {"limit":1}
+      end
+      get_posts(params)["total"]
+    end
   end
 end

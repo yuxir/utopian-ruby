@@ -53,4 +53,8 @@ describe UtopianRuby::UtopianRubyAPI do
     expect(UtopianRuby::UtopianRubyAPI.get_post('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one')['author']).to eq('espoem')
   end
 
+  it "has post_count" do
+    expect(UtopianRuby::UtopianRubyAPI.post_count(nil)).to be > 0
+  end
+
 end
