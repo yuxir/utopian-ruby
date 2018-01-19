@@ -24,10 +24,12 @@ module UtopianRuby
       uri.query
     end
 
+    # list all Utopian moderators
     def self.get_moderators()
       JSON.parse(get_request('/api/moderators').body)
     end
 
+    # check if a user is a moderator
     def self.is_moderator(user)
       get_moderators()["results"].each do |moderator|
         if moderator['account']==user
@@ -57,10 +59,12 @@ module UtopianRuby
       nil
     end
 
+    # return sponsor list
     def self.get_sponsors()
       JSON.parse(get_request('/api/sponsors').body)
     end
 
+    # check if a user is an utopian sponsor
     def self.is_sponsor(user)
       get_sponsors()["results"].each do |sponsor|
         if sponsor['account']==user
@@ -70,14 +74,17 @@ module UtopianRuby
       false
     end
 
+    # return Utopian current stats
     def self.stats()
       JSON.parse(get_request('/api/stats').body)
     end
 
+    # return if Utopian is currently voting
     def self.is_voting()
       self.stats()["stats"]["bot_is_voting"]
     end
 
+    # return JSON containing all post information that satisfies params
     def self.get_posts(params=nil)
       if params.nil?
          params = {}
@@ -85,6 +92,7 @@ module UtopianRuby
       JSON.parse(get_request('/api/posts?'+get_url_parameters(params)).body)
     end
 
+    # return a particular post information
     def self.get_post(author,permlink)
       JSON.parse(get_request('/api/posts/'+author+'/'+permlink).body)
     end
