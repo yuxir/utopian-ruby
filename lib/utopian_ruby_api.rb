@@ -1,4 +1,5 @@
 require 'faraday'
+require 'addressable'
 require 'json'
 
 module UtopianRuby
@@ -17,6 +18,12 @@ module UtopianRuby
       get_connection().get endpoint
     end
 
+    def self.get_url_parameters(params)
+      uri = Addressable::URI.new
+      uri.query_values = params
+      uri.query
+    end
+
     def self.get_moderators()
       JSON.parse(get_request('/api/moderators').body)
     end
@@ -28,6 +35,26 @@ module UtopianRuby
         end
       end
       false
+    end
+
+    # check if a user is an utopian supervisor
+    def self.is_supervisor(user)
+      get_moderators()["results"].each do |moderator|
+        if moderator['account']==user and moderator['supermoderator']
+          return true
+        end
+      end
+      false
+    end
+
+    # get a particular moderator's metadata
+    def self.get_moderator(user)
+      get_moderators()["results"].each do |moderator|
+        if moderator['account']==user
+          return moderator
+        end
+      end
+      nil
     end
 
     def self.get_sponsors()
@@ -49,6 +76,17 @@ module UtopianRuby
 
     def self.is_voting()
       self.stats()["stats"]["bot_is_voting"]
+    end
+
+    def self.get_posts(params=nil)
+      if params.nil?
+         params = {}
+      end
+      JSON.parse(get_request('/api/posts?'+get_url_parameters(params)).body)
+    end
+
+    def self.get_post(author,permlink)
+      JSON.parse(get_request('/api/posts/'+author+'/'+permlink).body)
     end
   end
 end
