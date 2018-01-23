@@ -67,4 +67,7 @@ describe UtopianRuby::UtopianRubyAPI do
     expect(UtopianRuby::UtopianRubyAPI.get_moderator_obj('elear').account).to eq('elear')
   end
 
+  it "has get_moderator_obj" do
+    expect(UtopianRuby::UtopianRubyAPI.get_moderator_obj('ned')).to eq(nil)
+  end
 end
