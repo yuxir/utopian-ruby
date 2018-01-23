@@ -58,6 +58,9 @@ describe UtopianRuby::UtopianRubyAPI do
   end
   it "has get_moderators_obj" do
     expect(UtopianRuby::UtopianRubyAPI.get_moderators_obj().length).to be > 0
+#    UtopianRuby::UtopianRubyAPI.get_moderators_obj().each do |m|
+#      puts m.account
+#    end
   end
 
 end
