@@ -129,5 +129,14 @@ module UtopianRuby
       end      
       moderators
     end
+
+    def self.get_moderator_obj(user)
+      get_moderators()["results"].each do |m|
+        if m["account"] == user
+          return j_to_m(m)
+        end
+      end
+      return nil
+    end
   end
 end
