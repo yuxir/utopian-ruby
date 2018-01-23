@@ -56,5 +56,8 @@ describe UtopianRuby::UtopianRubyAPI do
   it "has post_count" do
     expect(UtopianRuby::UtopianRubyAPI.post_count(nil)).to be > 0
   end
+  it "has get_moderators_obj" do
+    expect(UtopianRuby::UtopianRubyAPI.get_moderators_obj().length).to be > 0
+  end
 
 end

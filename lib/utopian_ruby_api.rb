@@ -1,6 +1,7 @@
 require 'faraday'
 require 'addressable'
 require 'json'
+require 'moderator'
 
 module UtopianRuby
   class UtopianRubyAPI
@@ -103,6 +104,26 @@ module UtopianRuby
          params = {"limit":1}
       end
       get_posts(params)["total"]
+    end
+
+    def self.get_moderators_obj()
+      moderators = Set.new
+      get_moderators()["results"].each do |m|
+        moderator = Moderator.new
+        moderator._id                                 = m["_id"]
+        moderator.account                             = m["account"]  unless m["account"].nil?
+        moderator.referrer                            = m["referrer"] unless m["referrer"].nil?
+        moderator.supermoderator                      = m["supermoderator"] unless m["supermoderator"].nil?
+        moderator.reviewed                            =  m["reviewed"] unless m["reviewed"].nil?
+        moderator.banned                              =  m["banned"] unless m["banned"].nil?
+        moderator.total_moderated                     =  m["total_moderated"] unless m["total_moderated"].nil?
+        moderator.total_paid_rewards                  = m["total_paid_rewards"] unless m["total_paid_rewards"].nil?
+        moderator.total_paid_rewards_steem            =  m["total_paid_rewards_steem"] unless m["total_paid_rewards_steem"].nil?
+        moderator.should_receive_rewards              =  m["should_receive_rewards"] unless m["should_receive_rewards"].nil?
+        moderator.percentage_total_rewards_moderators =  m["percentage_total_rewards_moderators"] unless m["percentage_total_rewards_moderators"].nil?
+        moderators << moderator
+      end      
+      moderators
     end
   end
 end
