@@ -2,6 +2,7 @@ require 'faraday'
 require 'addressable'
 require 'json'
 require 'moderator'
+require 'post'
 
 module UtopianRuby
   class UtopianRubyAPI
@@ -137,6 +138,74 @@ module UtopianRuby
         end
       end
       return nil
+    end
+
+    def self.j_to_p(p)
+      post = Post.new
+      post._id                        = p["_id"]  unless p["_id"].nil?
+      post.id                         = p["id"]  unless p["id"].nil?
+      post.author                     = p["author"]  unless p["author"].nil?
+      post.flagged                    = p["flagged"]  unless p["flagged"].nil?
+      post.reviewed                   = p["reviewed"]  unless p["reviewed"].nil?
+      post.pending                    = p["pending"]  unless p["pending"].nil?
+      post.moderator                  = p["moderator"]  unless p["moderator"].nil?
+      post.permlink                   = p["permlink"]  unless p["permlink"].nil?
+      post.category                   = p["category"]  unless p["category"].nil?
+      post.parent_author              = p["parent_author"]  unless p["parent_author"].nil?
+      post.parent_permlink            = p["parent_permlink"]  unless p["parent_permlink"].nil?
+      post.title                      = p["title"]  unless p["title"].nil?
+      post.body                       = p["body"]  unless p["body"].nil?
+      post.created                    = p["created"]  unless p["created"].nil?
+      post.last_update                = p[""]  unless p["last_update"].nil?
+      post.active                     = p["active"]  unless p["active"].nil?
+      post.last_payout                = p["last_payout"]  unless p["last_payout"].nil?
+      post.depth                      = p["depth"]  unless p["depth"].nil?
+      post.children                   = p["children"]  unless p["children"].nil?
+      post.net_rshares                = p["net_rshares"]  unless p["net_rshares"].nil?
+      post.abs_rshares                = p["abs_rshares"]  unless p["abs_rshares"].nil?
+      post.vote_rshares               = p["vote_rshares"]  unless p["vote_rshares"].nil?
+      post.children_abs_rshares       = p["children_abs_rshares"]  unless p["children_abs_rshares"].nil?
+      post.cashout_time               = p["cashout_time"]  unless p["cashout_time"].nil?
+      post.max_cashout_time           = p["max_cashout_time"]  unless p["max_cashout_time"].nil?
+      post.total_vote_weight          = p["total_vote_weight"]  unless p["total_vote_weight"].nil?
+      post.reward_weight              = p["reward_weight"]  unless p["reward_weight"].nil?
+      post.total_payout_value         = p["total_payout_value"]  unless p["total_payout_value"].nil?
+      post.curator_payout_value       = p["curator_payout_value"]  unless p["curator_payout_value"].nil?
+      post.author_rewards             = p["author_rewards"]  unless p["author_rewards"].nil?
+      post.net_votes                  = p["net_votes"]  unless p["net_votes"].nil?  
+      post.root_comment               = p["root_comment"]  unless p["root_comment"].nil?   
+      post.max_accepted_payout        = p["max_accepted_payout"]  unless p["max_accepted_payout"].nil?
+      post.percent_steem_dollars      = p["percent_steem_dollars"]  unless p["percent_steem_dollars"].nil?
+      post.allow_replies              = p["allow_replies"]  unless p["allow_replies"].nil?
+      post.allow_votes                = p["allow_votes"]  unless p["allow_votes"].nil?
+      post.allow_curation_rewards     = p["allow_curation_rewards"]  unless p["allow_curation_rewards"].nil?
+      post.url                        = p["url"]  unless p["url"].nil?      
+      post.root_title                 = p["root_title"]  unless p["root_title"].nil?
+      post.pending_payout_value       = p["pending_payout_value"]  unless p["pending_payout_value"].nil?
+      post.total_pending_payout_value = p["total_pending_payout_value"]  unless p["total_pending_payout_value"].nil?      
+      post.author_reputation          = p["author_reputation"]  unless p["author_reputation"].nil?
+      post.promoted                   = p["promoted"]  unless p["promoted"].nil?
+      post.body_length                = p["body_length"]  unless p["body_length"].nil?
+      post.__v                        = p["__v"]  unless p["__v"].nil?
+      post.reserved                   = p["reserved"]  unless p["reserved"].nil?
+      post.json_metadata              = p["json_metadata"]  unless p["json_metadata"].nil?
+      post.replies                    = p["replies"]  unless p["replies"].nil?
+      post.reblogged_by               = p["reblogged_by"]  unless p["reblogged_by"].nil?
+      post.beneficiaries              = p["beneficiaries"]  unless p["beneficiaries"].nil?      
+      post.active_votes               = p["active_votes"]  unless p["active_votes"].nil?
+      post
+    end
+
+    def self.get_posts_obj(params=nil)
+      if params.nil?
+         params = {}
+      end
+
+      posts = Set.new
+      get_posts(params)["results"].each do |p|
+        posts << j_to_p(p)
+      end
+      posts
     end
   end
 end

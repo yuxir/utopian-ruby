@@ -70,4 +70,9 @@ describe UtopianRuby::UtopianRubyAPI do
   it "has get_moderator_obj" do
     expect(UtopianRuby::UtopianRubyAPI.get_moderator_obj('ned')).to eq(nil)
   end
+
+  it "has get_posts_obj" do
+    expect(UtopianRuby::UtopianRubyAPI.get_posts_obj({"limit":1}).length).to eq(1)
+  end
+
 end
