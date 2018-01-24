@@ -207,5 +207,13 @@ module UtopianRuby
       end
       posts
     end
+
+    def self.get_post_obj(author,permlink)
+      j = JSON.parse(get_request('/api/posts/'+author+'/'+permlink).body)
+      unless j.nil?
+        return j_to_p(j)
+      end
+      return nil
+    end
   end
 end

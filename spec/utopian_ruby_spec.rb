@@ -73,6 +73,14 @@ describe UtopianRuby::UtopianRubyAPI do
 
   it "has get_posts_obj" do
     expect(UtopianRuby::UtopianRubyAPI.get_posts_obj({"limit":1}).length).to eq(1)
+
+#    UtopianRuby::UtopianRubyAPI.get_posts_obj({"limit":2}).each do |p|
+#      puts p.author
+#      puts p.moderator
+    end
   end
 
+  it "has get_post_obj" do
+    expect(UtopianRuby::UtopianRubyAPI.get_post_obj('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one').author).to eq('espoem')
+  end
 end
