@@ -77,7 +77,7 @@ describe UtopianRuby::UtopianRubyAPI do
 #    UtopianRuby::UtopianRubyAPI.get_posts_obj({"limit":2}).each do |p|
 #      puts p.author
 #      puts p.moderator
-    end
+#    end
   end
 
   it "has get_post_obj" do
