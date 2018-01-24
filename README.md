@@ -1,6 +1,6 @@
 # Utopian API Ruby client
 
-Please follow me at Steemit: https://steemit.com/@yuxi
+Please follow me at: https://steemit.com/@yuxi
 
 ## What is the project about?
 
@@ -41,6 +41,22 @@ UtopianRuby::UtopianRubyAPI.get_moderators()["results"]
 UtopianRuby::UtopianRubyAPI.get_moderator('elear')
 ```
 
+#### Get all moderators objects:
+
+```bash
+require 'utopian_ruby_api'
+
+UtopianRuby::UtopianRubyAPI.get_moderators_obj().each do |m|
+      puts m.account
+end
+```
+
+#### Get a particular moderator’s object
+
+```bash
+UtopianRuby::UtopianRubyAPI.get_moderator_obj('elear')
+```
+
 #### Check if a user is a moderator
 
 ```bash
@@ -66,10 +82,27 @@ UtopianRuby::UtopianRubyAPI.get_sponsors()["results"]
 UtopianRuby::UtopianRubyAPI.is_sponsor('ned')
 ```
 
-### Get a post information in JSON
+### Get post information
+
+Get a post information in JSON
 
 ```bash
 UtopianRuby::UtopianRubyAPI.get_post('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one')
+```
+
+Get post objects
+
+```bash
+UtopianRuby::UtopianRubyAPI.get_posts_obj({"limit":2}).each do |p|
+      puts p.author
+      puts p.moderator
+end
+```
+
+Get a particular post object:
+
+```bash
+UtopianRuby::UtopianRubyAPI.get_post_obj('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one')
 ```
 
 ### Get Utopian status
