@@ -14,4 +14,12 @@ describe UtopianRuby::UtopianRubyHelper do
     #  puts p.permlink
     #end
   end
+
+  it "has get_posts_obj_by_moderator" do
+    expect(UtopianRuby::UtopianRubyHelper.get_posts_obj_by_moderator("helo",{"limit":10,"type":"development"}).class).to eq(Set)
+    #UtopianRuby::UtopianRubyHelper.get_posts_obj_by_moderator("helo",{"limit":10,"type":"development"}).each do |p|
+    #  puts p.permlink
+    #end
+  end
+
 end
