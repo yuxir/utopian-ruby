@@ -215,5 +215,9 @@ module UtopianRuby
       end
       return nil
     end
+
+    def self.get_categories()
+      self.stats()["stats"]["categories"].keys
+    end
   end
 end

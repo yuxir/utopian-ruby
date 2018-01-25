@@ -83,4 +83,8 @@ describe UtopianRuby::UtopianRubyAPI do
   it "has get_post_obj" do
     expect(UtopianRuby::UtopianRubyAPI.get_post_obj('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one').author).to eq('espoem')
   end
+
+  it "has get_categories" do
+    expect(UtopianRuby::UtopianRubyAPI.get_categories().length).to be > 0
+  end
 end
