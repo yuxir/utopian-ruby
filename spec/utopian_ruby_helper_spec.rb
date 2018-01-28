@@ -22,4 +22,8 @@ describe UtopianRuby::UtopianRubyHelper do
     #end
   end
 
+  it "has get_post_repository" do
+    expect(UtopianRuby::UtopianRubyHelper.get_post_repository('yuxi','utopian-api-ruby-client')).to eq('https://github.com/yuxir/utopian-ruby')
+  end
+
 end
