@@ -33,6 +33,12 @@ module UtopianRuby
       end
       posts
     end
+
+    # get post github repository
+    def self.get_post_repository(author,permlink)
+      p = UtopianRuby::UtopianRubyAPI.get_post(author,permlink)
+      p["json_metadata"]["repository"]["html_url"]
+    end
   end
 end
 
