@@ -105,6 +105,29 @@ Get a particular post object:
 UtopianRuby::UtopianRubyAPI.get_post_obj('espoem','old-moderated-posts-are-received-and-shown-instead-of-the-recent-one')
 ```
 
+Get posts by category
+
+```bash
+UtopianRuby::UtopianRubyHelper.get_posts_by_type("development",{"limit":5})
+```
+
+Get post objects by category
+
+```bash
+UtopianRuby::UtopianRubyHelper.get_posts_obj_by_type("development",{"limit":5})
+```
+
+Get post objects by moderator
+```bash
+UtopianRuby::UtopianRubyHelper.get_posts_obj_by_moderator("helo",{"limit":10,"type":"development"})
+```
+
+Get post repository
+```bash
+UtopianRuby::UtopianRubyHelper.get_post_repository('yuxi','utopian-api-ruby-client')
+```
+
+
 ### Get Utopian status
 
 Get Utopian current status
@@ -118,4 +141,13 @@ Check if Utopian bot is voting
 ```bash
 UtopianRuby::UtopianRubyAPI.is_voting()
 ```
+
+### Get categories
+
+```bash
+require 'utopian_ruby_api'
+
+UtopianRuby::UtopianRubyAPI.get_categories()
+```
+
 
