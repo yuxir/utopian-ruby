@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = "Utopian API ruby client"
   s.description = "Utopian API ruby client, providing information about Utopian.io moderators, sponsors, posts, stats etc"
   s.authors     = ["Yuxi"]
-  s.files       = ["lib/utopian_ruby_api.rb"]
+  s.files       = ["lib/utopian_ruby_api.rb","lib/moderator.rb","lib/post.rb","lib/utopian_ruby_helper.rb","lib/beneficiary.rb"]
   s.homepage    =
     'http://rubygems.org/gems/utopian_ruby_api'
   s.license       = 'MIT'
